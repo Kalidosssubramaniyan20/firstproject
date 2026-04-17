@@ -1,10 +1,13 @@
 const db = require("../config/db");
 
-exports.getProducts = (req, res) => {
-  db.query("SELECT * FROM products", (err, result) => {
-    if (err) return res.send(err);
-    res.json(result);
-  });
+exports.getProducts = async (req, res) => {
+  try {
+    const result = await db.query("SELECT * FROM products");
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
 };
 
 exports.addProduct = (req, res) => {
