@@ -1,11 +1,19 @@
 require("dotenv").config();
 const mysql = require("mysql2");
 
+// const db = mysql.createConnection({
+//   host: process.env.mysql.railway.internal,
+//   user: process.env.root,
+//   password: process.env.RchpDOYBfoepVBmBnIltWQKUdXbMiggn,
+//   database: process.env.railway,
+// });
+
 const db = mysql.createConnection({
-  host: process.env.mysql.railway.internal,
-  user: process.env.root,
-  password: process.env.RchpDOYBfoepVBmBnIltWQKUdXbMiggn,
-  database: process.env.railway,
+  host: process.env.DB_HOST,      
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
 });
 
 db.connect(err => {
