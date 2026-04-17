@@ -1,10 +1,10 @@
-const mysql = require("mysql2");
+require("dotenv").config();
 
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "Dass"
+  host: process.env.mysql.railway.internal,
+  user: process.env.root,
+  password: process.env.RchpDOYBfoepVBmBnIltWQKUdXbMiggn,
+  database: process.env.railway,
 });
 
 db.connect(err => {
@@ -12,4 +12,4 @@ db.connect(err => {
   console.log("MySQL Connected");
 });
 
-module.exports = db;
+module.exports = db; 
