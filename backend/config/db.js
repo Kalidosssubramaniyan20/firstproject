@@ -1,13 +1,3 @@
-require("dotenv").config();
-//const mysql = require("mysql2");
-
-// const db = mysql.createConnection({
-//   host: process.env.mysql.railway.internal,
-//   user: process.env.root,
-//   password: process.env.RchpDOYBfoepVBmBnIltWQKUdXbMiggn,
-//   database: process.env.railway,
-// });
-
 const { Pool } = require("pg");
 
 const pool = new Pool({
@@ -21,9 +11,14 @@ const pool = new Pool({
   }
 });
 
-db.connect(err => {
-  if (err) throw err;
-  console.log("MySQL Connected");
+// Test connection
+pool.connect((err, client, release) => {
+  if (err) {
+    console.error("DB Connection Error ❌", err);
+  } else {
+    console.log("PostgreSQL Connected ✅");
+    release();
+  }
 });
 
-module.exports = db; 
+module.exports = pool;
